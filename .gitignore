@@ -116,3 +116,6 @@ venv.bak/
 
 # Windows
 Thumbs.db
+
+# Chroma DB
+chroma/**
