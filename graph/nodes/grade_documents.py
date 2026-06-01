@@ -4,7 +4,7 @@ from graph.chains.retrieval_grader import GradeDocuments, retrieval_grader
 from graph.state import GraphState
 
 
-def grade_documents(state: GraphState) -> Dict[str, Any]:
+async def grade_documents(state: GraphState) -> Dict[str, Any]:
     """
     Determines whether the retrieved documents are relevant to the question
     If any document is not relevant, we will set a flag to run web search
@@ -25,7 +25,7 @@ def grade_documents(state: GraphState) -> Dict[str, Any]:
     web_search = False
 
     for doc in documents:
-        res: GradeDocuments = retrieval_grader.invoke(
+        res: GradeDocuments = await retrieval_grader.ainvoke(
             {"document": doc.page_content, "question": state["question"]}
         )
 

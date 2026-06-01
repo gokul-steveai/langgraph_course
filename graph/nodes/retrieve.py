@@ -4,7 +4,7 @@ from graph.state import GraphState
 from ingestion import retriever
 
 
-def retrieve(state: GraphState) -> Dict[str, Any]:
+async def retrieve(state: GraphState) -> Dict[str, Any]:
     """
     Retrieves documents from the vector store.
 
@@ -18,6 +18,6 @@ def retrieve(state: GraphState) -> Dict[str, Any]:
 
     question = state["question"]
 
-    documents = retriever.invoke(question)
+    documents = await retriever.ainvoke(question)
 
     return {"documents": documents, "question": question}

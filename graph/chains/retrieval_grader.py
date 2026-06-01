@@ -2,6 +2,7 @@ import os
 
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableSequence
 from langchain_groq import ChatGroq
 from pydantic import BaseModel, Field
 
@@ -31,8 +32,11 @@ system = """You are a grader assessing relevance of a retrieved document to a us
 grade_prompt = ChatPromptTemplate.from_messages(
     [
         ("system", system),
-        ("human", "Retrieved document: \n\n{document} \n\n User Question: {question}"),
+        (
+            "human",
+            "Retrieved document: \n\n{document} \n\n User Question: {question}",
+        ),
     ]
 )
 
-retrieval_grader = grade_prompt | structured_llm_grader
+retrieval_grader: RunnableSequence = grade_prompt | structured_llm_grader

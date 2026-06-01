@@ -19,7 +19,32 @@ dependencies = [
     "langchainhub>=0.1.21",
     "langgraph>=1.2.2",
     "langsmith>=0.8.6",
+    "pydantic>=2.13.4",
     "pytest>=9.0.3",
     "python-dotenv>=1.2.2",
     "tiktoken>=0.13.0",
 ]
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 79
+target-version = ['py311', 'py312', 'py313']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+
+  | \.venv
+  | _build
+  | buck-out
+
+  | build
+  | dist
+)/
+'''
