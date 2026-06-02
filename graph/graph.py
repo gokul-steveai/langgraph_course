@@ -96,7 +96,6 @@ workflow.add_conditional_edges(
     },
 )
 
-workflow.set_entry_point(RETRIEVE)
 workflow.add_edge(RETRIEVE, GRADE_DOCUMENTS)
 workflow.add_conditional_edges(
     GRADE_DOCUMENTS,
@@ -109,4 +108,4 @@ workflow.add_edge(GENERATE, END)
 
 app = workflow.compile()
 
-# app.get_graph().draw_mermaid_png(output_file_path="graph.png")
+app.get_graph().draw_mermaid_png(output_file_path="graph.png")
